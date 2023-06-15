@@ -1,4 +1,4 @@
-package com.example.Erik.Controller.dto;
+package com.example.Erik.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -7,12 +7,11 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InventoryItemRequest {
+public class TransactionLineItemRequest {
 
   private ArticleMasterRequest article;
   private ColorMasterRequest colour;
-  private CompanyLedgerMasterRequest company;
-  private double grossQuantity;
-  private double netQuantity;
+  private double quantity;
+  private int ratePerUnit;
   private String unit;
 }

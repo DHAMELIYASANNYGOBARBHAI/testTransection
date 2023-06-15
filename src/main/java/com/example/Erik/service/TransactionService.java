@@ -1,24 +1,16 @@
 package com.example.Erik.service;
 
-import com.example.Erik.Controller.dto.AllItemResponse;
-import com.example.Erik.Controller.dto.ArticleMasterRequest;
-import com.example.Erik.Controller.dto.BranchMasterRequest;
-import com.example.Erik.Controller.dto.ColorMasterRequest;
-import com.example.Erik.Controller.dto.CompanyLedgerMasterRequest;
-import com.example.Erik.Controller.dto.DepartmentMasterRequest;
-import com.example.Erik.Controller.dto.InventoryItemRequest;
-import com.example.Erik.Controller.dto.TransactionLineItemRequest;
-import com.example.Erik.Controller.dto.TransactionLineItemResponse;
-import com.example.Erik.Controller.dto.TransactionRequest;
-import com.example.Erik.model.ArticleMaster;
-import com.example.Erik.model.BranchMaster;
-import com.example.Erik.model.ColorMaster;
-import com.example.Erik.model.CompanyLedgerMaster;
-import com.example.Erik.model.DepartmentMaster;
-import com.example.Erik.model.InventoryItem;
-import com.example.Erik.model.Transaction;
-import com.example.Erik.model.TransactionLineItem;
-import com.example.Erik.model.TransactionStatus;
+import com.example.Erik.dto.AllItemResponse;
+import com.example.Erik.dto.ArticleMasterRequest;
+import com.example.Erik.dto.BranchMasterRequest;
+import com.example.Erik.dto.ColorMasterRequest;
+import com.example.Erik.dto.CompanyLedgerMasterRequest;
+import com.example.Erik.dto.DepartmentMasterRequest;
+import com.example.Erik.dto.InventoryItemRequest;
+import com.example.Erik.dto.TransactionLineItemRequest;
+import com.example.Erik.dto.TransactionLineItemResponse;
+import com.example.Erik.dto.TransactionRequest;
+import com.example.Erik.model.*;
 import com.example.Erik.repo.InventoryItemRepo;
 import com.example.Erik.repo.TransactionRepo;
 import com.example.Erik.repo.TransictionLineItemRepo;
@@ -38,7 +30,8 @@ public class TransactionService {
   @Autowired
   private TransictionLineItemRepo transictionLineItemRepo;
 
-  public Transaction createTransaction(TransactionRequest request) {
+  public Transaction createTransaction(TransactionRequest request)
+  {
     return transactionRepo.save(convertToTransection(request));
   }
 
@@ -97,7 +90,7 @@ public class TransactionService {
 
   private Transaction getTransaction(Long transactionId) {
     return transactionRepo.findById(transactionId)
-        .orElseThrow(() -> new IllegalArgumentException("Invalid transaction ID"));
+    .orElseThrow(() -> new IllegalArgumentException("Invalid transaction ID"));
   }
 
   private TransactionLineItem getLineItem(Long lineItemId) {
@@ -107,8 +100,10 @@ public class TransactionService {
 
   private Transaction convertToTransection(TransactionRequest request) {
     final Transaction transaction = new Transaction();
+
+    transaction.setId(request.getId());
     transaction.setBranch(convertToBranchMaster(request.getBranch()));
-    transaction.setTransactionNumber(generateTransactionNumber());
+    transaction.setTransactionNumber(generateTransactionNumber(request.getId()));
     transaction.setTransactionStatus(TransactionStatus.PENDING);
     transaction.setCompany(convertToLedegeMaster(request.getCompany()));
     transaction.setDepartment(convertToDepartMaster(request.getDepartment()));
@@ -158,10 +153,10 @@ public class TransactionService {
     return transactionLineItem;
   }
 
-  private String generateTransactionNumber() {
+  private String generateTransactionNumber(Long id) {
     String year = String.valueOf(Year.now().getValue());
     int count = 1;
-    return "TRN/" + count + "/" + year;
+    return "TRN/" + id + "/" + year;
   }
 
   private InventoryItem converToInventoryItem(InventoryItemRequest request) {

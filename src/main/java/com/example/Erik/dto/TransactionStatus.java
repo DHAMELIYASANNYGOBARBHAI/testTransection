@@ -1,4 +1,4 @@
-package com.example.Erik.Controller.dto;
+package com.example.Erik.dto;
 
 public enum TransactionStatus {
   PENDING,

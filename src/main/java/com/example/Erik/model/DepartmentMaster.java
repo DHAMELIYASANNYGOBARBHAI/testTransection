@@ -8,12 +8,9 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
-@Accessors(chain = true)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class DepartmentMaster {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+
+
   private String name;
 }

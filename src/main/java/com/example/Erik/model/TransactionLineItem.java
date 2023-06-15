@@ -8,14 +8,15 @@ import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Document
 public class TransactionLineItem {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long uniqueId;
   private ArticleMaster article;
   private ColorMaster colour;

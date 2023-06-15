@@ -1,4 +1,4 @@
-package com.example.Erik.Controller.dto;
+package com.example.Erik.dto;
 
 
 import com.example.Erik.model.TransactionStatus;
@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionRequest {
 
+  private Long id;
   private CompanyLedgerMasterRequest company;
   private BranchMasterRequest branch;
   private DepartmentMasterRequest department;

@@ -1,9 +1,9 @@
 package com.example.Erik.Controller;
 
-import com.example.Erik.Controller.dto.AllItemResponse;
-import com.example.Erik.Controller.dto.InventoryItemRequest;
-import com.example.Erik.Controller.dto.TransactionLineItemRequest;
-import com.example.Erik.Controller.dto.TransactionRequest;
+import com.example.Erik.dto.AllItemResponse;
+import com.example.Erik.dto.InventoryItemRequest;
+import com.example.Erik.dto.TransactionLineItemRequest;
+import com.example.Erik.dto.TransactionRequest;
 import com.example.Erik.model.InventoryItem;
 import com.example.Erik.model.Transaction;
 import com.example.Erik.model.TransactionLineItem;
@@ -30,6 +30,7 @@ public class TransactionController {
   public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionRequest request) {
     return new ResponseEntity<>(transactionService.createTransaction(request), HttpStatus.CREATED);
   }
+
 
   @PostMapping("/{transactionId}/line-items")
   public ResponseEntity<TransactionLineItem> addLineItem(@PathVariable Long transactionId,

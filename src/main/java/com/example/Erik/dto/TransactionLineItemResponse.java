@@ -1,4 +1,4 @@
-package com.example.Erik.Controller.dto;
+package com.example.Erik.dto;
 
 import com.example.Erik.model.InventoryItem;
 import com.example.Erik.model.TransactionLineItem;
