@@ -7,14 +7,13 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-
 @Data
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BranchMaster {
+public class ColorMaster {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private int id;
   private String name;
 }
